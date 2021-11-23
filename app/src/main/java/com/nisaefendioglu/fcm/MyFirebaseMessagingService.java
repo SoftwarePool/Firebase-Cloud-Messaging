@@ -15,6 +15,11 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Map;
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
@@ -22,14 +27,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
+
+        //notifications != null
+
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
 
+        //Json data for example :
+        Log.e("DATA", remoteMessage.getData().toString());
+        try {
+            Map<String, String> params = remoteMessage.getData();
+            JSONObject object = new JSONObject(params);
+            Log.e("JSON OBJECT", object.toString());
+            String image = object.getString("image"); // image --> data name
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    //fixed definitions :
 
     @Override
     public void onNewToken(String token) {
+
+        //app token data :
         Log.d(TAG, "Refreshed token: " + token);
 
     }
