@@ -63,6 +63,52 @@ Edit your app manifest :
     </intent-filter>
 </service>
 ```
+Notifications for :
+```
+ FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        String token = task.getResult();
+                        @SuppressLint({"StringFormatInvalid", "LocalSuppress"}) String msg = getString(R.string.app_name, token);
+                        Log.d(TAG, msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+```
+Topic Message for :
+```
+ FirebaseMessaging.getInstance().subscribeToTopic("topicnameadd")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = getString(R.string.app_name);
+                        if (!task.isSuccessful()) {
+                            msg = getString(R.string.app_name);
+                        }
+                        Log.d(TAG, msg);
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+```
+Json data for example :
+```
+ try {
+            Map<String, String> params = remoteMessage.getData();
+            JSONObject object = new JSONObject(params);
+            Log.e("JSON OBJECT", object.toString());
+            String image = object.getString("image"); // image --> data name
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+```
+
 <br> 
 <img width="1440" alt="Screen Shot 2021-11-23 at 16 44 48" src="https://user-images.githubusercontent.com/48391281/143037566-996e5ef8-1221-4186-868d-8943fb3e268f.png">
 <br>
