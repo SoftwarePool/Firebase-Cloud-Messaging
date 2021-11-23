@@ -63,4 +63,15 @@ Edit your app manifest :
     </intent-filter>
 </service>
 ```
+<br> 
+<img width="1440" alt="Screen Shot 2021-11-23 at 16 44 48" src="https://user-images.githubusercontent.com/48391281/143037566-996e5ef8-1221-4186-868d-8943fb3e268f.png">
+<br>
+
+Screenshots of the app : <br><br>
+<img width="342" alt="Screen Shot 2021-11-23 at 16 43 22" src="https://user-images.githubusercontent.com/48391281/143038835-49906f2d-6683-4804-a687-d9bce5b1c2c6.png">
+
+
+<br> <br>
+📄 Firebase Documents 👉🏼 https://firebase.google.com/docs/cloud-messaging/android/client
+
 
